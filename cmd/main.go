@@ -5,6 +5,10 @@ import (
   "github.com/labstack/echo/v4/middleware"
 )
 
+func home(c echo.Context) error {
+  return c.String(200, "Hello World!")
+}
+
 func hello(c echo.Context) error {
   return c.String(200, "Hello!")
 }
@@ -20,6 +24,7 @@ func main() {
   e.Use(middleware.Logger())
   e.Use(middleware.Recover())
 
+  e.GET("/", home)
   e.GET("/hello", hello)
   e.GET("/users", users)
 

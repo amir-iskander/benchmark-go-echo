@@ -1,6 +1,6 @@
 module amir-iskander/benchmark-go-echo
 
-go 1.19
+go 1.17
 
 require (
 	github.com/golang-migrate/migrate/v4 v4.16.2

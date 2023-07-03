@@ -1,17 +1,18 @@
-FROM golang:1.19 as build
+FROM golang:1.17-alpine
 
-WORKDIR /usr/src/app
+# Set the working directory
+WORKDIR /app
 
 COPY . .
 RUN go mod tidy
 
+# Copy the go.mod and go.sum files
+# COPY go.mod go.sum ./
+# COPY ./app/*.go ./
 
 
-
-# COPY . .  
-# RUN go mod download
+# # COPY . .  
+# RUN go mod tidy
 # RUN go build -o app .
-
-# FROM scratch  
-# COPY --from=build /app/app .
+# RUN chmod -R a+x ./app
 # CMD ["./app"]

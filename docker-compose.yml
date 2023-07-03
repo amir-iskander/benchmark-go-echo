@@ -1,22 +1,15 @@
-version: "3.8"
+version: '3'
 
 services:
-
-  db:  
-    image: postgres  
-    environment:  
-      - POSTGRES_USER=user  
-      - POSTGRES_PASSWORD=password  
-      - POSTGRES_DB=db
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data   
-    
-  goapp:        
-    build: .  
+  echoapp:
+    build: .
     ports:
       - "3000:3000"
+    mem_limit: 256m
+    cpu_shares: 512
+    environment:
+      GIN_MODE: release
+  
     volumes:
-      - .:/usr/src/app
-    command: go run cmd/main.go -b 0.0.0.0
-    depends_on: 
-      - db
+      - .:/app
+    command: go run app/main.go -b 0.0.0.0
